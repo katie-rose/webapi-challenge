@@ -23,6 +23,7 @@ Follow these steps to set up and work on your project:
 - [ ] Implement the project on this Branch, committing changes regularly.
 - [ ] Push commits: git push origin `firstName-lastName`.
 
+
 Follow these steps for completing your project.
 
 - [ ] Submit a Pull-Request to merge `firstName-lastName` Branch into master on **your fork, don't make Pull Requests against Lambda's repository**.
