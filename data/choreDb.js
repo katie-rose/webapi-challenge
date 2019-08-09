@@ -1,20 +1,20 @@
 const chores = [
   {
-    choresId: 1,
+    id: 1,
     description: "Take Kilo outside",
     notes: "Fat boy",
     assignedTo: 1,
     completed: false
   },
   {
-    choresId: 2,
+    id: 2,
     description: "Do the dishes",
     notes: "It's a mess",
     assignedTo: 1,
     completed: true
   },
   {
-    choresId: 3,
+    id: 3,
     description: "Go to the gym",
     notes: "Get huge",
     assignedTo: 2,
@@ -22,4 +22,8 @@ const chores = [
   }
 ];
 
-module.exports = chores;
+const getChores = () => {
+  return chores;
+};
+
+module.exports = { getChores };

@@ -1,37 +1,51 @@
 const express = require("express");
 const server = express();
+server.use(express.json());
 
 const userDb = require("./data/userDb");
-const choreDb = require("./data/choresDb");
+const choreDb = require("./data/choreDb");
 
-router.get("/", (req, res) => {
+server.get("/", (req, res) => {
   res.status(200).json(userDb);
 });
 
-router.get("/:userId", (req, res) => {
-  const userId = req.params.userId;
-  let [currentPerson] = userDb.filter(person => person.userId == userId);
-  if (currentPerson) {
-    res.status(200).json(currentPerson);
-  } else {
-    res.status(404).json({ message: "Unable to find that user" });
-  }
-});
+server.get("/chores", (req, res) => {
+  const chores = choreDb.getChores();
+  const emptyArr = [];
 
-router.get("/:userId/chores/:choresId", (req, res) => {
-  const choresId = req.params.choresId;
-  const completed = req.query.completed;
-
-  let [currentChore] = choreDb.filter(chores => chores.choresId == choresId);
-
-  if (currentChore) {
-    if (completed === "true") {
-      res.status(200).json({ message: "This user has completed their task" });
+  if (chores.length === 0) {
+    res.status(404).json({ error: "Empty array" });
+  } else if (!req.query.completed) {
+    res.status(200).json(chores);
+  } else if (req.query.completed === "false") {
+    for (let i = 0; i < chores.length; i++) {
+      if (chores[i].completed === false) {
+        emptyArr.push(chores[i]);
+      }
     }
+    res.status(200).json(emptyArr);
+  } else if (req.query.completed === "true") {
+    for (let i = 0; i < chores.length; i++) {
+      if (chores[i].completed === true) {
+        emptyArr.push(chores[i]);
+      }
+    }
+    res.status(200).json(emptyArr);
   } else {
-    res.status(400).json({ message: "This user is lazy" });
+    res.status(500).json({ error: "Unable to reach database" });
   }
 });
+
+// find chore
+// server.get("/chores/:choreId", (req, res) => {
+//   const choreId = req.params.choreId;
+//   let [currentChore] = choreDb.filter(chore => chore.choreId == choreId);
+//   if (currentChore) {
+//     res.status(200).json(currentChore);
+//   } else {
+//     res.status(404).json({ message: "nope" });
+//   }
+// });
 
 server.listen(8000, () => {
   console.log("server running on 8000");
