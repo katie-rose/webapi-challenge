@@ -1,21 +1,12 @@
-const express = "express";
-const server = require("express").Router();
+const express = require("express");
+const userRoutes = require("./users/userRouter.js");
 
-server.use(logger);
+const server = express();
 
 server.get("/", (req, res) => {
-  res.send(`<h2>Let's write some middleware!</h2>`);
+  res.send(`<h2>It's working, IT'S WORKING</h2>`);
 });
 
-//custom middleware
-
-function logger(req, res, next) {
-  const method = req.method;
-  const url = req.url;
-  console.log(
-    `you made a ${method} request to ${url} on [${new Date().toISOString()}]`
-  );
-  next();
-}
+server.use("/users", userRoutes);
 
 module.exports = server;
