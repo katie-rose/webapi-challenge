@@ -42,5 +42,12 @@ server.put("/chores/:id", (req, res) => {
   res.status(200).json(choreDb);
 });
 
+server.delete("/chores/:id", (req, res) => {
+    choreDb = choreDb.filter(({ id }) => {
+        return id !== Number(req.params.id);
+    })
+    res.status(200).json(choreDb);
+})
+
 const port = 8000;
 server.listen(port, () => console.log("server is running"));
