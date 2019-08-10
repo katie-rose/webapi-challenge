@@ -1,11 +1,14 @@
 const express = require("express");
 const server = express();
-server.use(express.json());
+const port = process.env.PORT || 8000;
 
 let choreDb = require("./data/choreDb");
 
 server.get("/", (req, res) => {
   res.status(200).json(choreDb);
+  res.status(200).json({
+    sprintChallenge: process.env.SPRINT
+  });
 });
 
 server.get("/chores", (req, res) => {
@@ -43,11 +46,10 @@ server.put("/chores/:id", (req, res) => {
 });
 
 server.delete("/chores/:id", (req, res) => {
-    choreDb = choreDb.filter(({ id }) => {
-        return id !== Number(req.params.id);
-    })
-    res.status(200).json(choreDb);
-})
+  choreDb = choreDb.filter(({ id }) => {
+    return id !== Number(req.params.id);
+  });
+  res.status(200).json(choreDb);
+});
 
-const port = 8000;
-server.listen(port, () => console.log("server is running"));
+server.listen(port, () => console.log("server on port 8000"));
