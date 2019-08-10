@@ -3,10 +3,9 @@ const server = express();
 server.use(express.json());
 
 let choreDb = require("./data/choreDb");
-const userDb = require("./data/userDb");
 
 server.get("/", (req, res) => {
-  res.status(200).json(userDb);
+  res.status(200).json(choreDb);
 });
 
 server.get("/chores", (req, res) => {
@@ -17,21 +16,31 @@ server.get("/chores", (req, res) => {
 });
 
 server.get("/chores/:id", (req, res) => {
-const id = req.params.id;
-let [currentChore] = choreDb.filter(chore => chore.assignedTo == id);
-if (currentChore) {
+  const id = req.params.id;
+  let [currentChore] = choreDb.filter(chore => chore.assignedTo == id);
+  if (currentChore) {
     res.status(200).json(currentChore);
-} else {
+  } else {
     res.status(404).json([]);
-}
-})
+  }
+});
 
 server.post("/chores", (req, res) => {
-    const newChore = req.body
+  const newChore = req.body;
 
-chore.Db.push(newChore);
-res.status(200).json(choreDb);
-})
+  choreDb.push(newChore);
+  res.status(200).json(choreDb);
+});
+
+server.put("/chores/:id", (req, res) => {
+  const id = req.params.id;
+  const updatedChore = req.body;
+
+  choreDb = choreDb.map(chore => {
+    return chore.id == req.params.id ? (chore = updatedChore) : chore;
+  });
+  res.status(200).json(choreDb);
+});
 
 const port = 8000;
 server.listen(port, () => console.log("server is running"));
