@@ -23,6 +23,7 @@ Follow these steps to set up and work on your project:
 - [ ] Implement the project on this Branch, committing changes regularly.
 - [ ] Push commits: git push origin `firstName-lastName`.
 
+
 Follow these steps for completing your project.
 
 - [ ] Submit a Pull-Request to merge `firstName-lastName` Branch into master on **your fork, don't make Pull Requests against Lambda's repository**.
@@ -38,23 +39,28 @@ Commit your code regularly and use descriptive messages. This helps both you (in
 
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your Team Lead.
 
-- [ ] Mention two parts of Express that you learned about this week.
+- [x] Mention two parts of Express that you learned about this week.
+We focused mainly on custom Express middleware this week with a brief intro to third parties like Helment.
 
-- [ ] What is Express Middleware?
+- [x] What is Express Middleware?
+An array of functions that get executed in the order they are introduced into the server code.
 
-- [ ] How can a client send data to an API?
+- [x] How can a client send data to an API?
+By using REST commands like GET, POST, PUT, DELETE.
 
-- [ ] What can the API return to help clients know if a request was successful?
+- [x] What can the API return to help clients know if a request was successful?
+A 200 HTTP status meaning the execution was successful.
 
-- [ ] What Express feature can we use to partition an application into sub-applications?
+- [x] What Express feature can we use to partition an application into sub-applications?
+Cusom middleware and/or multiple API's. 
 
 ## Minimum Viable Product
 
-- [ ] Configure an _npm script_ named _"server"_ that will execute your code using _nodemon_. Make _nodemon_ be a development time dependency only, it shouldn't be deployed to production.
-- [ ] Configure an _npm script_ named _"start"_ that will execute your code using _node_.
-- [ ] Write endpoints to manage (CRUD) **chores**.
-- [ ] Hard code an array with a few **people**. No need to write endpoints to manage them.
-- [ ] Write an endpoint that accepts a person's `id` and returns the list of **chores** for the person. if a person with that `id` does not exist in the **people** array, the endpoint should return a `404` status code and a message. If the person exists, but has no **chores** assigned, return an empty array.
+- [x] Configure an _npm script_ named _"server"_ that will execute your code using _nodemon_. Make _nodemon_ be a development time dependency only, it shouldn't be deployed to production.
+- [x] Configure an _npm script_ named _"start"_ that will execute your code using _node_.
+- [x] Write endpoints to manage (CRUD) **chores**.
+- [x] Hard code an array with a few **people**. No need to write endpoints to manage them.
+- [] Write an endpoint that accepts a person's `id` and returns the list of **chores** for the person. if a person with that `id` does not exist in the **people** array, the endpoint should return a `404` status code and a message. If the person exists, but has no **chores** assigned, return an empty array.
 - [ ] Add support for a `query string parameter` called _completed_ to the endpoint that returns the list of chores. When the client sends this query string parameter, and the value is `true`, the endpoint should return the list of completed chores. If the value of the query string parameter is `false`, the endpoint should return chores where completed is `false`. If the query string parameter is not sent, the endpoint should return all chores.
 - [ ] Deploy the API to _heroku_ and send the URL to your TL.
 
